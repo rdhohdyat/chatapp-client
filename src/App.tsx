@@ -10,7 +10,9 @@ interface MessageData {
   avatar: string;
 }
 
-const socket: Socket = io('http://localhost:3001');
+const socket: Socket = io(import.meta.env.VITE_SOCKET_URL || '/', {
+  transports: ['websocket', 'polling']
+});
 
 const App = () => {
   const [username, setUsername] = useState<string>("");
